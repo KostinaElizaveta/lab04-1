@@ -1,7 +1,14 @@
 language: cpp
-script: 
-- cmake --build _build
-- cmake --build _build --target print
-- cmake --build _build --target example1
-- cmake --build _build --target example2
 
+script:
+- cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
+- cmake --build _build
+- cmake --build _build --target install
+
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
